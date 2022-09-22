@@ -10,21 +10,28 @@ document.getElementById('btn-withdraw').addEventListener('click', function () {
     const previousWithdrawTotalString = withdrawTotalElement.innerText;
     const previousWithdrawTotal = parseFloat(previousWithdrawTotalString);
 
+   
+    // step 5.5 working on balance 
+    const balanceTotalElement = document.getElementById('balance-total');
+    const previousBalanceTotalString = balanceTotalElement.innerText;
+    const previousBalanceTotal = parseFloat(previousBalanceTotalString);
+
+    if (newWithdrawAmount > previousBalanceTotal) {
+        alert('Bank e tk nai');
+        return;
+    }
+    // claculate the balance total 
+    const newBalanceTotal = previousBalanceTotal - newWithdrawAmount;
+    balanceTotalElement.innerText = newBalanceTotal;
+
     // step 4
     // calculate the total withdrw 
-    
+
     const currentWithdrawTotal = previousWithdrawTotal + newWithdrawAmount;
 
     // step 5 set total withdraw amount 
     withdrawTotalElement.innerText = currentWithdrawTotal;
 
-    // step 5.5 working on balance 
-    const balanceTotalElement = document.getElementById('balance-total');
-    const previousBalanceTotalString = balanceTotalElement.innerText;
-    const previousBalanceTotal = parseFloat(previousBalanceTotalString);
-    // claculate the balance total 
-    const newBalanceTotal = previousBalanceTotal - newWithdrawAmount;
-    balanceTotalElement.innerText = newBalanceTotal;
 
     // step 7 clear the input field 
     withdrawField.value = '';
